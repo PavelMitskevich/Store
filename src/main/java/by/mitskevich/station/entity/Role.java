@@ -7,11 +7,15 @@ import java.io.Serializable;
 @Entity
 @Table(name = "role")
 public class Role implements Serializable {
-
+    @Serial
+    private static final long serialVersionUID = 7493382628684730438L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
+    public Role() {
+    }
 
     public int getId() {
         return id;
