@@ -31,7 +31,7 @@ public class Car implements Serializable {
     private String model;
     @Column(name = "year")
     private int year;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

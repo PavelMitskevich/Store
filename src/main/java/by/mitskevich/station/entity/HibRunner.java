@@ -30,7 +30,7 @@ public class HibRunner {
             session.save(user);
 //            session.delete(String.valueOf(Role.class),2L);
             session.getTransaction().commit();
-            session.close();
+//            session.close();
 
         }
     }

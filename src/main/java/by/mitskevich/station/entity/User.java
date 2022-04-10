@@ -33,7 +33,7 @@ public class User implements Serializable {
     private String email;
     @Column(name = "phone_number")
     private int phoneNumber;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
 

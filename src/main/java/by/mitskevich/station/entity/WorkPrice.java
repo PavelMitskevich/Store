@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,6 +29,14 @@ public class WorkPrice implements Serializable {
     private double price;
     @Column(name = "discount")
     private double discount;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "total_price", joinColumns = @JoinColumn(name = "work_price_id"),
+            inverseJoinColumns = @JoinColumn(name = "work_order_id"))
+    private List<WorkOrder> workOrders;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "total_price", joinColumns = @JoinColumn(name = "work_price_id"),
+            inverseJoinColumns = @JoinColumn(name = "spare_part_price_id"))
+    private List<SparePartPrice> sparePartPrices;
 
     @Override
     public boolean equals(Object o) {

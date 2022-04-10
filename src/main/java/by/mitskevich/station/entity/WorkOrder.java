@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -31,12 +32,21 @@ public class WorkOrder implements Serializable {
     private LocalDate startTime;
     @Column(name = "end_time")
     private LocalDate endTime;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "status_id")
     private Status status;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "worker_id")
     private Worker worker;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "total_price", joinColumns = @JoinColumn(name = "work_order_id"),
+            inverseJoinColumns = @JoinColumn(name = "work_price_id"))
+    private List<WorkPrice> workPrices;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "total_price", joinColumns = @JoinColumn(name = "work_order_id"),
+            inverseJoinColumns = @JoinColumn(name = "spare_part_price_id"))
+    private List<SparePartPrice> sparePartPrices;
+
 
     @Override
     public boolean equals(Object o) {
