@@ -8,17 +8,16 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "role",schema = "car_service_station")
-public class Role implements Serializable {
+@Table(name = "status", schema = "car_service_station")
+public class Status implements Serializable {
     @Serial
-    private static final long serialVersionUID = 7493382628684730438L;
+    private static final long serialVersionUID = 4931648625645297983L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,22 +30,22 @@ public class Role implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Role role = (Role) o;
+        Status status = (Status) o;
 
-        if (id != role.id) return false;
-        return Objects.equals(name, role.name);
+        if (id != status.id) return false;
+        return name.equals(status.name);
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + name.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Role{");
+        final StringBuilder sb = new StringBuilder("Status{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append('}');
