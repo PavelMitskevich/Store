@@ -1,33 +1,29 @@
 package by.mitskevich.station.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Objects;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "role")
+@Table(name = "role",schema = "car_service_station")
 public class Role implements Serializable {
     @Serial
     private static final long serialVersionUID = 7493382628684730438L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "name")
     private String name;
-
-    public Role() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -37,7 +33,7 @@ public class Role implements Serializable {
         Role role = (Role) o;
 
         if (id != role.id) return false;
-        return name != null ? name.equals(role.name) : role.name == null;
+        return Objects.equals(name, role.name);
     }
 
     @Override
